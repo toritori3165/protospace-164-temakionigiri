@@ -10,8 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema[7.0].define(version: 2025_01_18_121134) do
+  create_table "comments", charset: "utf8", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "prototype_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prototype_id"], name: "index_comments_on_prototype_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_19_030017) do
+  create_table "prototypes", charset: "utf8", force: :cascade do |t|
+    t.string "title"
+    t.text "catch_copy"
+    t.text "concept"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -26,15 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_030017) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-ActiveRecord::Schema[7.0].define(version: 2024_01_18_121133) do
-  create_table "prototypes", charset: "utf8", force: :cascade do |t|
-    t.string "title"
-    t.text "catch_copy"
-    t.text "concept"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-
   end
 
+  add_foreign_key "comments", "prototypes"
+  add_foreign_key "comments", "users"
 end
