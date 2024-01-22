@@ -63,4 +63,4 @@ Things you may want to cover:
 | user               | references | null: false, foreign_key: true |
 
 - belongs_to :user
-- belongs_to :comment
+- belongs_to :prototype
