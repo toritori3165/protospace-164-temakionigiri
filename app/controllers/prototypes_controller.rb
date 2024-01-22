@@ -3,6 +3,13 @@ class PrototypesController < ApplicationController
 
   def index
 
+  end
+  
+  def show
+    @comment = Comment.new
+    @comments = @prototype.comments.includes(:user)
+
+
     @prototypes = Prototype.includes(:user)
   end
 
@@ -31,6 +38,7 @@ class PrototypesController < ApplicationController
     unless user_signed_in?
       redirect_to action: :index
     end
+
   end
 
 end
