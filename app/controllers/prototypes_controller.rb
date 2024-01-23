@@ -3,10 +3,12 @@ class PrototypesController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
+    @prototypes = Prototype.includes(:user)
   end
   
   def show
     @comment = Comment.new
+    @prototype = Prototype.find(params[:id])
     @comments = @prototype.comments.includes(:user)
     @prototypes = Prototype.includes(:user)
   end
