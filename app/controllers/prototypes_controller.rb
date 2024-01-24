@@ -23,7 +23,7 @@ class PrototypesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end  
+  end
 
   def destroy
     prototype = Prototype.find(params[:id])
@@ -43,7 +43,6 @@ class PrototypesController < ApplicationController
     redirect_to prototype_path(prototype.id)
   end
 
-
   private
 
   def prototype_params
@@ -60,10 +59,4 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def set_prototype
-    @prototype = Prototype.find(params[:id])
-  end
-
 end
-
-
