@@ -28,6 +28,7 @@
           </p>
         </div>
       </div>
+
       <div class="prototype__comments">
         <% if user_signed_in? %>
           <%= form_with(model: [@prototype, @comment], local: true) do |f| %>
